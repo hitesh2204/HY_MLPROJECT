@@ -26,6 +26,7 @@ class DataIngestion:
             logging.info("Reading data from mysql database.")
             #df=read_sql_data()
             df=pd.read_csv("Data/raw.csv")
+            print(df.head(10))
 
             ### making the artifacts directory.
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
