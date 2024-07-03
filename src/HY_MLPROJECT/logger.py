@@ -1,5 +1,4 @@
-
-from src.HY_MLPROJECT.logger import logging
+import logging
 import os
 from datetime import datetime
 
