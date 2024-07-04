@@ -103,6 +103,27 @@ class DataTransformation:
                 test_arr,
                 self.data_transformation_config.preprocessor_obj_file_path
             )
+        
+            model_report:dict=evaluate_models(X_train,y_train,X_test,y_test,models,params)
+
+            ## To get best model score from dict
+            best_model_score = max(sorted(model_report.values()))
+
+            ## To get best model name from dict
+
+            best_model_name = list(model_report.keys())[
+                list(model_report.values()).index(best_model_score)
+            ]
+
+            best_model = models[best_model_name]
+
+            if best_model_score<0.6:
+                raise CustomException('No model found')
+            logging.info(f"best model found on both training and testing dataset.")
+
+            print("This is the best model:")
+            print(best_model_name)
+
 
         except Exception as e:
             raise CustomException(e,sys)
